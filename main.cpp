@@ -91,13 +91,31 @@ int createLeafNodes(int freq[]) {
 int buildEncodingTree(int nextFree) {
     // TODO:
     // 1. Create a MinHeap object.
+    MinHeap heap;
+
     // 2. Push all leaf node indices into the heap.
+    for (int i = 0; i < nextFree; ++i) {
+        heap.push(nextFree, weightArr);
+    }
+
     // 3. While the heap size is greater than 1:
-    //    - Pop two smallest nodes
-    //    - Create a new parent node with combined weight
-    //    - Set left/right pointers
-    //    - Push new parent index back into the heap
-    // 4. Return the index of the last remaining node (root)
+    while (heap.size > 1) {
+        //-Pop two smallest nodes
+        a = heap.pop(weightArr);
+        b = heap.pop(weightArr);
+
+        // - Create a new parent node with combined weight
+        weightArr[nextFree] = weightArr[a] + weightArr[b];
+        leftArr[nextFree] = a;
+        rightArr[nextFree] = b;
+
+        // - Push new parent index back into the heap
+        heap.push(nextFree, weightArr);
+
+        // 4. Return the index of the last remaining node (root)
+        nextFree++;
+
+    }
     return -1; // placeholder
 }
 
@@ -107,7 +125,7 @@ void generateCodes(int root, string codes[]) {
     // Use stack<pair<int, string>> to simulate DFS traversal.
     // Left edge adds '0', right edge adds '1'.
     // Record code when a leaf node is reached.
-}
+    }
 
 // Step 5: Print table and encoded message
 void encodeMessage(const string& filename, string codes[]) {
@@ -115,6 +133,7 @@ void encodeMessage(const string& filename, string codes[]) {
     for (int i = 0; i < 26; ++i) {
         if (!codes[i].empty())
             cout << char('a' + i) << " : " << codes[i] << "\n";
+
     }
 
     cout << "\nEncoded message:\n";
