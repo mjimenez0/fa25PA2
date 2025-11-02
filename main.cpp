@@ -10,9 +10,9 @@ using namespace std;
 
 // Global arrays for node information
 const int MAX_NODES = 64;
-int weightArr[MAX_NODES];
-int leftArr[MAX_NODES];
-int rightArr[MAX_NODES];
+int weightArr[MAX_NODES]; //this is where all the nodes are stored
+int leftArr[MAX_NODES]; // these are like the child nodes
+int rightArr[MAX_NODES]; // these are like the child nodes
 char charArr[MAX_NODES];
 
 // Function prototypes
@@ -101,30 +101,34 @@ int buildEncodingTree(int nextFree) {
     // 3. While the heap size is greater than 1:
     while (heap.size > 1) {
         //-Pop two smallest nodes
+
         a = heap.pop(weightArr);
-        b = heap.pop(weightArr);
+        c = heap.pop(weightArr);
 
         // - Create a new parent node with combined weight
-        weightArr[nextFree] = weightArr[a] + weightArr[b];
+        weightArr[nextFree] = weightArr[a] + weightArr[c];
         leftArr[nextFree] = a;
-        rightArr[nextFree] = b;
+        rightArr[nextFree] = c;
 
         // - Push new parent index back into the heap
         heap.push(nextFree, weightArr);
-
-        // 4. Return the index of the last remaining node (root)
         nextFree++;
 
     }
+    // 4. Return the index of the last remaining node (root)
     return -1; // placeholder
 }
 
 // Step 4: Use an STL stack to generate codes
 void generateCodes(int root, string codes[]) {
     // TODO:
-    // Use stack<pair<int, string>> to simulate DFS traversal.
+    // Use  to simulate DFS traversal.
+    stack<pair<int, string>>
     // Left edge adds '0', right edge adds '1'.
+    leftArr [i] + '0';
+    rightArr[i] + '1';
     // Record code when a leaf node is reached.
+
     }
 
 // Step 5: Print table and encoded message
