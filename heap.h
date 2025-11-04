@@ -19,7 +19,7 @@ struct MinHeap {
 
         data[size] = idx; // stores the data size at index
         size++; // increments it by one
-        upheap(size -1, weightArr);2
+        upheap(size -1, weightArr);
 
     }
 
