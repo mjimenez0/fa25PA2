@@ -91,19 +91,19 @@ int createLeafNodes(int freq[]) {
 int buildEncodingTree(int nextFree) {
     // TODO:
     // 1. Create a MinHeap object.
-    if (nextFree == 0) {
+    if (nextFree == 0) { // checks if there are no nodes
         return -1;
     }
     MinHeap heap;
 
     // 2. Push all leaf node indices into the heap.
-    // keep cyclying one by one intil no more
+    // all nodes into the heap
     for (int i = 0; i < nextFree; ++i) {
         heap.push(i, weightArr);
     }
 
     // 3. While the heap size is greater than 1:
-    while (heap.size > 1) {
+    while (heap.size > 1) { // combineds the nodes
         //-Pop two smallest nodes
 
        int  a = heap.pop(weightArr);
